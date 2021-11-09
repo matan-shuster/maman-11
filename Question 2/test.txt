@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+
+void main() {
+    char s1[81];
+    char s2[256];
+    fgets(s1, 81,stdin);
+    int i = 0;
+    int j = 1;
+    int g = 0;
+    while (s1[i] != '\0')
+    {
+        if((s1[j] - s1[i] == 1) && ((isalnum(s1[j]) && isalnum(s1[i]))))
+        {
+            s2[g] = s1[i];
+           // acdef
+            g++;
+            j++;
+            i++;
+            int counter = 0;
+            while((s1[j] - s1[i] == 1) && ((isalnum(s1[j]) && isalnum(s1[i]))) && (s1[j] != '\0'))
+            {
+                counter++;
+                j++;
+                i++;
+            }
+            if(counter > 1){
+            s2[g] = '-';
+            g++;
+            }
+
+            s2[g] = s1[i];
+        }
+        else
+        {
+            s2[g] = s1[i];
+            g++;
+            s2[g] = s1[j];
+            i++;
+            j++;
+        }
+    }
+    printf("this is the string: %s",s2);
+}
